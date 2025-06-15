@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>춤추는 아기 동물</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>춤추는 아기 동물</h1>
+        
+        <div class="selection-area">
+            <div class="character-selection">
+                <h2>동물 캐릭터 선택</h2>
+                <div class="character-options">
+                    <div class="character" data-character="bear">
+                        <img src="assets/bear.svg" alt="곰">
+                        <p>곰</p>
+                    </div>
+                    <div class="character" data-character="rabbit">
+                        <img src="assets/rabbit.svg" alt="토끼">
+                        <p>토끼</p>
+                    </div>
+                    <div class="character" data-character="fox">
+                        <img src="assets/fox.svg" alt="여우">
+                        <p>여우</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="song-selection">
+                <h2>동요 선택</h2>
+                <div class="song-options">
+                    <div class="song" data-song="twinkle">
+                        <p>반짝반짝 작은별</p>
+                    </div>
+                    <div class="song" data-song="happy">
+                        <p>짝짜꿍</p>
+                    </div>
+                    <div class="song" data-song="spring">
+                        <p>따르릉</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage-area">
+            <div class="stage">
+                <div class="character-animation"></div>
+            </div>
+            <div class="controls">
+                <button id="startBtn" class="btn">시작하기</button>
+                <button id="stopBtn" class="btn" disabled>멈춤</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

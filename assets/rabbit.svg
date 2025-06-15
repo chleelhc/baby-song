@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Rabbit body -->
+    <ellipse cx="100" cy="120" rx="40" ry="50" fill="white"/>
+    <!-- Rabbit head -->
+    <circle cx="100" cy="70" r="35" fill="white"/>
+    <!-- Rabbit ears -->
+    <path d="M80 40 L70 10 L90 30" fill="white"/>
+    <path d="M120 40 L130 10 L110 30" fill="white"/>
+    <!-- Rabbit inner ears -->
+    <path d="M80 40 L70 10 L90 30" fill="pink" opacity="0.5"/>
+    <path d="M120 40 L130 10 L110 30" fill="pink" opacity="0.5"/>
+    <!-- Rabbit eyes -->
+    <circle cx="85" cy="65" r="5" fill="black"/>
+    <circle cx="115" cy="65" r="5" fill="black"/>
+    <!-- Rabbit nose -->
+    <circle cx="100" cy="75" r="5" fill="pink"/>
+    <!-- Rabbit mouth -->
+    <path d="M95 80 Q100 85 105 80" stroke="black" fill="none" stroke-width="2"/>
+</svg> 
