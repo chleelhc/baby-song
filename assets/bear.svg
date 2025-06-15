@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Bear body -->
+    <ellipse cx="100" cy="140" rx="40" ry="50" fill="#8B4513"/>
+    <!-- Bear head -->
+    <circle cx="100" cy="90" r="45" fill="#A0522D"/>
+    <!-- Bear ears -->
+    <circle cx="60" cy="60" r="20" fill="#8B4513"/>
+    <circle cx="140" cy="60" r="20" fill="#8B4513"/>
+    <!-- Bear eyes -->
+    <circle cx="80" cy="80" r="8" fill="white"/>
+    <circle cx="120" cy="80" r="8" fill="white"/>
+    <circle cx="80" cy="80" r="4" fill="black"/>
+    <circle cx="120" cy="80" r="4" fill="black"/>
+    <!-- Bear nose -->
+    <ellipse cx="100" cy="100" rx="15" ry="10" fill="black"/>
+    <!-- Bear mouth -->
+    <path d="M85 110 Q100 120 115 110" stroke="black" fill="none" stroke-width="2"/>
+    <!-- Bear arms -->
+    <path d="M60 120 Q40 140 60 160" stroke="#8B4513" fill="none" stroke-width="15"/>
+    <path d="M140 120 Q160 140 140 160" stroke="#8B4513" fill="none" stroke-width="15"/>
+    <!-- Bear legs -->
+    <path d="M80 190 Q80 200 70 200" stroke="#8B4513" fill="none" stroke-width="15"/>
+    <path d="M120 190 Q120 200 130 200" stroke="#8B4513" fill="none" stroke-width="15"/>
+</svg> 
