@@ -67,12 +67,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // 선택된 수만큼 랜덤 동물 생성
         const selectedAnimals = getRandomAnimals(selectedCount);
         
-        // 동물 몸통 생성
+        // 동물 몸통 생성 및 위치 계산
         selectedAnimals.forEach((animal, index) => {
             const animalBody = document.createElement('div');
             animalBody.className = 'animal-body';
             animalBody.textContent = animal;
             animalBody.style.animationDelay = `${index * 0.1}s`;
+            
+            // 동물 수에 따른 동적 위치 계산
+            const position = calculatePosition(index, selectedCount);
+            animalBody.style.top = position.top;
+            animalBody.style.left = position.left;
+            animalBody.style.right = position.right;
+            animalBody.style.bottom = position.bottom;
+            animalBody.style.transform = position.transform;
+            
             characterAnimation.appendChild(animalBody);
         });
 
@@ -95,6 +104,54 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             frameIndex = (frameIndex + 1) % danceFrames.length;
         }, 200);
+    }
+
+    function calculatePosition(index, totalCount) {
+        const positions = {
+            top: '',
+            left: '',
+            right: '',
+            bottom: '',
+            transform: ''
+        };
+
+        if (totalCount === 2) {
+            if (index === 0) {
+                positions.left = '30px';
+                positions.top = '50%';
+                positions.transform = 'translateY(-50%)';
+            } else {
+                positions.right = '30px';
+                positions.top = '50%';
+                positions.transform = 'translateY(-50%)';
+            }
+        } else if (totalCount === 3) {
+            if (index === 0) {
+                positions.left = '30px';
+                positions.top = '30px';
+            } else if (index === 1) {
+                positions.right = '30px';
+                positions.top = '30px';
+            } else {
+                positions.left = '50%';
+                positions.top = '50%';
+                positions.transform = 'translate(-50%, -50%)';
+            }
+        } else if (totalCount === 7) {
+            // 7마리일 때는 기존 CSS 위치 사용
+            const cssPositions = [
+                { top: '20px', left: '30px' },
+                { top: '20px', right: '30px' },
+                { top: '50%', left: '30px', transform: 'translateY(-50%)' },
+                { top: '50%', right: '30px', transform: 'translateY(-50%)' },
+                { bottom: '20px', left: '30px' },
+                { bottom: '20px', right: '30px' },
+                { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
+            ];
+            Object.assign(positions, cssPositions[index]);
+        }
+
+        return positions;
     }
 
     function getRandomAnimals(count) {
