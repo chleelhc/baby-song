@@ -176,24 +176,24 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (totalCount === 2) {
             allPositions.push(
-                { top: '40%', left: '40%', transform: 'translateY(-50%)' },
-                { top: '40%', right: '40%', transform: 'translateY(-50%)' },
-                { top: '50%', left: '35%', transform: 'translateY(-50%)' },
-                { top: '50%', right: '35%', transform: 'translateY(-50%)' },
-                { top: '60%', left: '40%', transform: 'translateY(-50%)' },
-                { top: '60%', right: '40%', transform: 'translateY(-50%)' }
+                { top: '45%', left: '45%', transform: 'translateY(-50%)' },
+                { top: '45%', right: '45%', transform: 'translateY(-50%)' },
+                { top: '50%', left: '40%', transform: 'translateY(-50%)' },
+                { top: '50%', right: '40%', transform: 'translateY(-50%)' },
+                { top: '55%', left: '45%', transform: 'translateY(-50%)' },
+                { top: '55%', right: '45%', transform: 'translateY(-50%)' }
             );
         } else if (totalCount === 3) {
             allPositions.push(
-                { top: '30%', left: '25%' },
-                { top: '30%', right: '25%' },
-                { top: '30%', left: '50%', transform: 'translateX(-50%)' },
-                { top: '50%', left: '25%' },
-                { top: '50%', right: '25%' },
+                { top: '35%', left: '35%' },
+                { top: '35%', right: '35%' },
+                { top: '35%', left: '50%', transform: 'translateX(-50%)' },
+                { top: '50%', left: '35%' },
+                { top: '50%', right: '35%' },
                 { top: '50%', left: '50%', transform: 'translateX(-50%)' },
-                { top: '70%', left: '25%' },
-                { top: '70%', right: '25%' },
-                { top: '70%', left: '50%', transform: 'translateX(-50%)' }
+                { top: '65%', left: '35%' },
+                { top: '65%', right: '35%' },
+                { top: '65%', left: '50%', transform: 'translateX(-50%)' }
             );
         } else if (totalCount === 7) {
             allPositions.push(
