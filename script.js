@@ -87,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 춤추는 애니메이션 시작
         const danceFrames = [
-            'translateY(0) rotate(0deg)',
-            'translateY(-10px) rotate(-5deg)',
-            'translateY(0) rotate(0deg)',
-            'translateY(10px) rotate(5deg)'
+            'translateY(0) rotate(0deg) scale(1)',
+            'translateY(-15px) rotate(-8deg) scale(1.1)',
+            'translateY(0) rotate(0deg) scale(1)',
+            'translateY(15px) rotate(8deg) scale(0.9)'
         ];
 
         let frameIndex = 0;
@@ -98,12 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         animationInterval = setInterval(() => {
             animalBodies.forEach((body, index) => {
-                const delay = (index * 0.1) % 0.4;
+                const delay = (index * 0.15) % 0.6;
                 const currentFrame = (frameIndex + Math.floor(delay * 10)) % danceFrames.length;
                 body.style.transform = danceFrames[currentFrame];
             });
             frameIndex = (frameIndex + 1) % danceFrames.length;
-        }, 200);
+        }, 300);
     }
 
     function calculatePosition(index, totalCount) {
@@ -117,38 +117,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (totalCount === 2) {
             if (index === 0) {
-                positions.left = '30px';
+                positions.left = '80px';
                 positions.top = '50%';
                 positions.transform = 'translateY(-50%)';
             } else {
-                positions.right = '30px';
+                positions.right = '80px';
                 positions.top = '50%';
                 positions.transform = 'translateY(-50%)';
             }
         } else if (totalCount === 3) {
             if (index === 0) {
-                positions.left = '30px';
-                positions.top = '30px';
+                positions.left = '80px';
+                positions.top = '80px';
             } else if (index === 1) {
-                positions.right = '30px';
-                positions.top = '30px';
+                positions.right = '80px';
+                positions.top = '80px';
             } else {
                 positions.left = '50%';
                 positions.top = '50%';
                 positions.transform = 'translate(-50%, -50%)';
             }
         } else if (totalCount === 7) {
-            // 7마리일 때는 기존 CSS 위치 사용
-            const cssPositions = [
-                { top: '20px', left: '30px' },
-                { top: '20px', right: '30px' },
-                { top: '50%', left: '30px', transform: 'translateY(-50%)' },
-                { top: '50%', right: '30px', transform: 'translateY(-50%)' },
-                { bottom: '20px', left: '30px' },
-                { bottom: '20px', right: '30px' },
+            // 7마리일 때는 무대 전체에 분산 배치
+            const positions7 = [
+                { top: '60px', left: '60px' },
+                { top: '60px', right: '60px' },
+                { top: '50%', left: '60px', transform: 'translateY(-50%)' },
+                { top: '50%', right: '60px', transform: 'translateY(-50%)' },
+                { bottom: '60px', left: '60px' },
+                { bottom: '60px', right: '60px' },
                 { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
             ];
-            Object.assign(positions, cssPositions[index]);
+            Object.assign(positions, positions7[index]);
         }
 
         return positions;
