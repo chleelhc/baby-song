@@ -71,10 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedAnimals.forEach((animal, index) => {
             const animalBody = document.createElement('div');
             animalBody.className = 'animal-body';
-            animalBody.textContent = animal;
+            
+            // 이모지 생성
+            const emoji = document.createElement('div');
+            emoji.className = 'animal-emoji';
+            emoji.textContent = animal;
+            
+            animalBody.appendChild(emoji);
             animalBody.style.animationDelay = `${index * 0.1}s`;
             
-            // 동물 수에 따른 동적 위치 계산
+            // 동물 수에 따른 동적 위치 계산 (간격을 좁게)
             const position = calculatePosition(index, selectedCount);
             animalBody.style.top = position.top;
             animalBody.style.left = position.left;
@@ -117,36 +123,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (totalCount === 2) {
             if (index === 0) {
-                positions.left = '80px';
+                positions.left = '35%';
                 positions.top = '50%';
                 positions.transform = 'translateY(-50%)';
             } else {
-                positions.right = '80px';
+                positions.right = '35%';
                 positions.top = '50%';
                 positions.transform = 'translateY(-50%)';
             }
         } else if (totalCount === 3) {
             if (index === 0) {
-                positions.left = '80px';
-                positions.top = '80px';
+                positions.left = '25%';
+                positions.top = '40%';
+                positions.transform = 'translateY(-50%)';
             } else if (index === 1) {
-                positions.right = '80px';
-                positions.top = '80px';
+                positions.right = '25%';
+                positions.top = '40%';
+                positions.transform = 'translateY(-50%)';
             } else {
                 positions.left = '50%';
                 positions.top = '50%';
                 positions.transform = 'translate(-50%, -50%)';
             }
         } else if (totalCount === 7) {
-            // 7마리일 때는 무대 전체에 분산 배치
+            // 7마리일 때는 중앙에 모여서 배치
             const positions7 = [
-                { top: '60px', left: '60px' },
-                { top: '60px', right: '60px' },
-                { top: '50%', left: '60px', transform: 'translateY(-50%)' },
-                { top: '50%', right: '60px', transform: 'translateY(-50%)' },
-                { bottom: '60px', left: '60px' },
-                { bottom: '60px', right: '60px' },
-                { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
+                { top: '30%', left: '20%' },
+                { top: '30%', left: '35%' },
+                { top: '30%', left: '50%', transform: 'translateX(-50%)' },
+                { top: '30%', right: '35%' },
+                { top: '30%', right: '20%' },
+                { top: '60%', left: '35%' },
+                { top: '60%', right: '35%' }
             ];
             Object.assign(positions, positions7[index]);
         }
