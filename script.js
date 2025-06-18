@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // 선택된 수만큼 랜덤 동물 생성
         const selectedAnimals = getRandomAnimals(selectedCount);
         
+        // 랜덤 위치 가져오기
+        const randomPositions = getRandomPosition(selectedCount);
+        
         // 동물 몸통 생성 및 위치 계산
         selectedAnimals.forEach((animal, index) => {
             const animalBody = document.createElement('div');
@@ -80,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
             animalBody.appendChild(emoji);
             animalBody.style.animationDelay = `${index * 0.1}s`;
             
-            // 동물 수에 따른 동적 위치 계산 (간격을 좁게)
-            const position = calculatePosition(index, selectedCount);
+            // 랜덤 위치 적용
+            const position = randomPositions[index];
             animalBody.style.top = position.top;
             animalBody.style.left = position.left;
             animalBody.style.right = position.right;
@@ -123,22 +126,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (totalCount === 2) {
             if (index === 0) {
-                positions.left = '35%';
+                positions.left = '40%';
                 positions.top = '50%';
                 positions.transform = 'translateY(-50%)';
             } else {
-                positions.right = '35%';
+                positions.right = '40%';
                 positions.top = '50%';
                 positions.transform = 'translateY(-50%)';
             }
         } else if (totalCount === 3) {
             if (index === 0) {
-                positions.left = '25%';
-                positions.top = '40%';
+                positions.left = '30%';
+                positions.top = '45%';
                 positions.transform = 'translateY(-50%)';
             } else if (index === 1) {
-                positions.right = '25%';
-                positions.top = '40%';
+                positions.right = '30%';
+                positions.top = '45%';
                 positions.transform = 'translateY(-50%)';
             } else {
                 positions.left = '50%';
@@ -146,15 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 positions.transform = 'translate(-50%, -50%)';
             }
         } else if (totalCount === 7) {
-            // 7마리일 때는 중앙에 모여서 배치
+            // 7마리일 때는 매우 가까이 모여서 배치
             const positions7 = [
-                { top: '30%', left: '20%' },
-                { top: '30%', left: '35%' },
-                { top: '30%', left: '50%', transform: 'translateX(-50%)' },
-                { top: '30%', right: '35%' },
-                { top: '30%', right: '20%' },
-                { top: '60%', left: '35%' },
-                { top: '60%', right: '35%' }
+                { top: '35%', left: '25%' },
+                { top: '35%', left: '35%' },
+                { top: '35%', left: '45%' },
+                { top: '35%', left: '55%', transform: 'translateX(-50%)' },
+                { top: '35%', right: '35%' },
+                { top: '35%', right: '25%' },
+                { top: '55%', left: '50%', transform: 'translateX(-50%)' }
             ];
             Object.assign(positions, positions7[index]);
         }
@@ -165,6 +168,62 @@ document.addEventListener('DOMContentLoaded', () => {
     function getRandomAnimals(count) {
         const shuffled = [...animals].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, count);
+    }
+
+    function getRandomPosition(totalCount) {
+        // 랜덤 위치 배열 생성
+        const allPositions = [];
+        
+        if (totalCount === 2) {
+            allPositions.push(
+                { top: '40%', left: '40%', transform: 'translateY(-50%)' },
+                { top: '40%', right: '40%', transform: 'translateY(-50%)' },
+                { top: '50%', left: '35%', transform: 'translateY(-50%)' },
+                { top: '50%', right: '35%', transform: 'translateY(-50%)' },
+                { top: '60%', left: '40%', transform: 'translateY(-50%)' },
+                { top: '60%', right: '40%', transform: 'translateY(-50%)' }
+            );
+        } else if (totalCount === 3) {
+            allPositions.push(
+                { top: '30%', left: '25%' },
+                { top: '30%', right: '25%' },
+                { top: '30%', left: '50%', transform: 'translateX(-50%)' },
+                { top: '50%', left: '25%' },
+                { top: '50%', right: '25%' },
+                { top: '50%', left: '50%', transform: 'translateX(-50%)' },
+                { top: '70%', left: '25%' },
+                { top: '70%', right: '25%' },
+                { top: '70%', left: '50%', transform: 'translateX(-50%)' }
+            );
+        } else if (totalCount === 7) {
+            allPositions.push(
+                { top: '25%', left: '20%' },
+                { top: '25%', left: '30%' },
+                { top: '25%', left: '40%' },
+                { top: '25%', left: '50%', transform: 'translateX(-50%)' },
+                { top: '25%', right: '40%' },
+                { top: '25%', right: '30%' },
+                { top: '25%', right: '20%' },
+                { top: '45%', left: '20%' },
+                { top: '45%', left: '30%' },
+                { top: '45%', left: '40%' },
+                { top: '45%', left: '50%', transform: 'translateX(-50%)' },
+                { top: '45%', right: '40%' },
+                { top: '45%', right: '30%' },
+                { top: '45%', right: '20%' },
+                { top: '65%', left: '20%' },
+                { top: '65%', left: '30%' },
+                { top: '65%', left: '40%' },
+                { top: '65%', left: '50%', transform: 'translateX(-50%)' },
+                { top: '65%', right: '40%' },
+                { top: '65%', right: '30%' },
+                { top: '65%', right: '20%' }
+            );
+        }
+
+        // 위치들을 랜덤하게 섞기
+        const shuffled = [...allPositions].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, totalCount);
     }
 
     function stopAnimation() {
