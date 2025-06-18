@@ -5,17 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const stopBtn = document.getElementById('stopBtn');
     const characterAnimation = document.querySelector('.character-animation');
     
-    let selectedCharacter = null;
+    let selectedCount = null;
     let selectedSong = null;
     let audio = null;
     let animationInterval = null;
+    
+    // 7개의 동물 이모지 배열
+    const animals = ['🐻', '🐰', '🦊', '🐯', '🐸', '🐨', '🐼'];
 
-    // Character selection
+    // Character selection (동물 수 선택)
     characters.forEach(character => {
         character.addEventListener('click', () => {
             characters.forEach(c => c.classList.remove('selected'));
             character.classList.add('selected');
-            selectedCharacter = character.dataset.character;
+            selectedCount = parseInt(character.dataset.count);
         });
     });
 
@@ -30,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start button click handler
     startBtn.addEventListener('click', () => {
-        if (!selectedCharacter || !selectedSong) {
-            alert('동물 캐릭터와 동요를 모두 선택해주세요!');
+        if (!selectedCount || !selectedSong) {
+            alert('동물 수와 동요를 모두 선택해주세요!');
             return;
         }
 
@@ -58,6 +61,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function startAnimation() {
+        // 기존 동물 몸통 제거
+        characterAnimation.innerHTML = '';
+        
+        // 선택된 수만큼 랜덤 동물 생성
+        const selectedAnimals = getRandomAnimals(selectedCount);
+        
+        // 동물 몸통 생성
+        selectedAnimals.forEach((animal, index) => {
+            const animalBody = document.createElement('div');
+            animalBody.className = 'animal-body';
+            animalBody.textContent = animal;
+            animalBody.style.animationDelay = `${index * 0.1}s`;
+            characterAnimation.appendChild(animalBody);
+        });
+
+        // 춤추는 애니메이션 시작
         const danceFrames = [
             'translateY(0) rotate(0deg)',
             'translateY(-10px) rotate(-5deg)',
@@ -66,12 +85,21 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
 
         let frameIndex = 0;
-        characterAnimation.style.backgroundImage = `url('assets/${selectedCharacter}.svg')`;
+        const animalBodies = characterAnimation.querySelectorAll('.animal-body');
 
         animationInterval = setInterval(() => {
-            characterAnimation.style.transform = danceFrames[frameIndex];
+            animalBodies.forEach((body, index) => {
+                const delay = (index * 0.1) % 0.4;
+                const currentFrame = (frameIndex + Math.floor(delay * 10)) % danceFrames.length;
+                body.style.transform = danceFrames[currentFrame];
+            });
             frameIndex = (frameIndex + 1) % danceFrames.length;
         }, 200);
+    }
+
+    function getRandomAnimals(count) {
+        const shuffled = [...animals].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
     }
 
     function stopAnimation() {
@@ -79,8 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(animationInterval);
             animationInterval = null;
         }
-        characterAnimation.style.transform = 'translateY(0) rotate(0deg)';
-        characterAnimation.style.backgroundImage = '';
+        characterAnimation.innerHTML = '';
     }
 
     function startAudio() {
